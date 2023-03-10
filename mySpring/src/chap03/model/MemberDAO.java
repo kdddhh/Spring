@@ -22,6 +22,10 @@ public class MemberDAO {
 		members.put(member.getEmail(), member);
 	}
 	
+	public void update(Member member) {
+		members.put(member.getEmail(), member);
+	}
+	
 	public Collection<Member> selectAll() {
 		return members.values();
 	}

@@ -1,5 +1,8 @@
 package chap03.model;
 
+import chap03.exception.MemberNotFoundException;
+import chap03.exception.WrongIdPasswordException;
+
 public class ChangePasswordService {
 	private MemberDAO memberDAO;
 	

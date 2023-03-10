@@ -2,6 +2,8 @@ package chap03.model;
 
 import java.time.LocalDateTime;
 
+import chap03.exception.WrongIdPasswordException;
+
 public class Member {
 	private long id; // 멤버 객체가 생성될때마다 자동생성 시킬거임
 	private String email; // 이메일을 고유

@@ -2,6 +2,8 @@ package chap03.model;
 
 import java.time.LocalDateTime;
 
+import chap03.exception.DuplicateMemberException;
+
 public class MemberRegisterService {
 	//실제로 회원 등록 작업을 수행하는 클래스
 	

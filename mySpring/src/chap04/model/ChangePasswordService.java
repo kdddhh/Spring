@@ -12,7 +12,7 @@ public class ChangePasswordService {
 	}
 	
 	
-	/*
+	/* => 이렇게도 풀 수 있음
 	 * @Autowired 
 	 * public void setMemberDAO(MemberDAO memberDAO) { 
 	 * 

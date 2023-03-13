@@ -6,16 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class MemberListPrinter {
 	
-	@Autowired	
-	private MemberDAO memberDAO;
-	
-	@Autowired
+		
+	private MemberDAO memberDAO;	
 	private MemberPrinter printer;
 	
 	
 	public MemberListPrinter() {
 	}
 	
+	@Autowired
+	public void setMemberDAO(MemberDAO memberDAO) {
+		this.memberDAO = memberDAO;
+	}
+
+	@Autowired
+	public void setPrinter(MemberPrinter printer) {
+		this.printer = printer;
+	}
+
 	public void allPrint() {
 		Collection<Member> members = memberDAO.selectAll();
 		

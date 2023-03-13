@@ -36,8 +36,10 @@ public class AppConf2 {
 	@Bean
 	public MemberInfoPrinter infoPrinter() {
 		MemberInfoPrinter memberInfoPrinter = new MemberInfoPrinter();
-		memberInfoPrinter.setMemberDAO(this.memberDAO);
-		memberInfoPrinter.setPrinter(this.memberPrinter);
+		/*
+		 * memberInfoPrinter.setMemberDAO(this.memberDAO);
+		 * memberInfoPrinter.setPrinter(this.memberPrinter);
+		 */
 		
 		return memberInfoPrinter;
 	}

@@ -27,6 +27,7 @@ public class MemberDAO {
 	}
 	
 	public Collection<Member> selectAll() {
-		return members.values();
+		return members.values(); // 키가 아닌 값들이 필요해서 밸류즈를 사용하고 밸류즈의 반환형이 collection<member>임
 	}
+	
 }

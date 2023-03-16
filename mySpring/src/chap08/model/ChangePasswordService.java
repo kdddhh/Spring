@@ -1,5 +1,7 @@
 package chap08.model;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import chap08.exception.MemberNotFoundException;
 import chap08.exception.WrongIdPasswordException;
 
@@ -13,6 +15,7 @@ public class ChangePasswordService {
 		this.memberDAO = memberDAO;
 	}
 	
+	@Transactional
 	public void changePassword(String email, String oldPassword, String newPassword) {
 		Member member = memberDAO.selectByEmail(email);
 		

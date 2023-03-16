@@ -109,7 +109,7 @@ public class MemberDAOSpring extends MemberDAO {
 		@Override
 		public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] { "id" });
-			// new String[]은 속성이 하나일 수도 여러개일 수도 있기 때문에 배열형태로 넣어준다.
+			// new String[]은 읽어야하는 특정 컬럼명을 지정해주는 역할이다. 이는 하나일 수도, 여러 개일수도 있기 때문에 배열로 선언한다.
 			pstmt.setString(1, member.getEmail());
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getName());

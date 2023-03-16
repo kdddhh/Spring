@@ -3,10 +3,14 @@ package chap08.config;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import chap08.model.*;
 
 @Configuration
+@EnableTransactionManagement //트랜잭션 어노테이션을 이용하기 위한 선언
 public class AppContext {
 	
 	@Bean
@@ -26,6 +30,14 @@ public class AppContext {
 		// setMinEvictableIdleTimeMillis 유후 상태로 유지할 최소 시간을 밀리초 단위로 지정, 기본 값 60,000(1분)
 		// setTimeBetweenEvictionRunsMillis 유후 커넥션을 검사할 주기를 밀리초 단위로 지정 5,000(5초)
 		return ds;
+	}
+	
+	@Bean // 트랜잭션을 위한 빈 선언
+	public PlatformTransactionManager transactionManager() {
+		DataSourceTransactionManager tm = new DataSourceTransactionManager();
+		tm.setDataSource(this.dataSource());
+		
+		return tm;
 	}
 	
 	@Bean

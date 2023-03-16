@@ -13,12 +13,12 @@ public class MemberPreparedStatementCreator implements PreparedStatementCreator 
 	
 	public MemberPreparedStatementCreator(Member member) {
 		this(member, new String[] {});
-	}
+	} // KeyHolder 사용하지 않을 때 이용하는 생성자
 	
 	public MemberPreparedStatementCreator(Member member, String[] keyColumns) {
 		this.member = member;
 		this.keyColumns = keyColumns;
-	}
+	} // KeyHolder 사용할 때 이용하는 생성자
 
 	@Override
 	public PreparedStatement createPreparedStatement(Connection con) throws SQLException {

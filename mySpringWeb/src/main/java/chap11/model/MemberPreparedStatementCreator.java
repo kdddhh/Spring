@@ -1,8 +1,6 @@
 package chap11.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 import org.springframework.jdbc.core.PreparedStatementCreator;
 
@@ -18,7 +16,7 @@ public class MemberPreparedStatementCreator implements PreparedStatementCreator 
 		this.member = member;
 		this.keyColumns = keyColumns;
 	}
-
+	
 	@Override
 	public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
 		String sql = "insert into member (id, email, password, name) values (member_id_seq.nextval, ?, ?, ?)";
@@ -31,10 +29,11 @@ public class MemberPreparedStatementCreator implements PreparedStatementCreator 
 			pstmt = conn.prepareStatement(sql);
 		}
 		
-		pstmt.setString(1, member.getEmail());
-		pstmt.setString(2, member.getPassword());
-		pstmt.setString(3, member.getName());
+		pstmt.setString(1, this.member.getEmail());
+		pstmt.setString(2, this.member.getPassword());
+		pstmt.setString(3, this.member.getName());
 		
 		return pstmt;
 	}
 }
+

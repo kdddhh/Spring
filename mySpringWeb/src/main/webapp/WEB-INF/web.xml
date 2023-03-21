@@ -22,11 +22,11 @@
   version="4.0"
   metadata-complete="true">
 
-  <display-name>Welcome to mySpringWeb</display-name>
-  <description>
-     Welcome to mySpringWeb
-  </description>
-	
+	<display-name>Welcome to mySpringWeb</display-name>
+	<description>
+		Welcome to mySpringWeb
+	</description>
+
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -36,26 +36,27 @@
 		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<!-- 9장 설정 클래스 
+			<!-- 9장 설정 클래스
 			<param-value>
-			chap09.config.MvcConfig
-			chap09.config.ControllerConfig
+				chap09.config.MvcConfig
+				chap09.config.ControllerConfig
 			</param-value>
-			-->
+			 -->
 			<param-value>
-			 	chap11.config.MvcConfig
-			 	chap11.config.ControllerConfig
-			 	chap11.config.MemberConfig
-			 </param-value>
+				chap11.config.MvcConfig
+				chap11.config.ControllerConfig
+				chap11.config.MemberConfig
+			</param-value>
+			 
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
+	
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -64,10 +65,10 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
-
+	
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	
 </web-app>

@@ -1,7 +1,7 @@
 package chap11.model;
 
-import org.springframework.jdbc.core.RowMapper;
 import java.sql.*;
+import org.springframework.jdbc.core.RowMapper;
 
 public class MemberRowMapper implements RowMapper<Member> {
 	
@@ -13,7 +13,6 @@ public class MemberRowMapper implements RowMapper<Member> {
 		member.setPassword(rs.getString("password"));
 		member.setName(rs.getString("name"));
 		member.setRegisterDateTime(rs.getTimestamp("regdate").toLocalDateTime());
-		
 		return member;
 	}
 }

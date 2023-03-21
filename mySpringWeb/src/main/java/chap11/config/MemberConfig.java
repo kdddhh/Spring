@@ -51,6 +51,11 @@ public class MemberConfig {
 	}
 	
 	@Bean
+	public MemberService memberSvc() {
+		return new MemberService(this.memberDao());
+	}
+	
+	@Bean
 	public ChangePasswordService changePwdSvc() {
 		ChangePasswordService pwdSvc = new ChangePasswordService();
 		pwdSvc.setMemberDao(this.memberDao());
@@ -90,4 +95,6 @@ public class MemberConfig {
 	public DateTimeFormatter dateTimeFormatter() {
 		return DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
 	}
+	
+	
 }

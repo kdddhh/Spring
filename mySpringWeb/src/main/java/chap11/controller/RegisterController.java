@@ -20,10 +20,12 @@ public class RegisterController {
       this.memberRegisterService = memberRegisterService;
    }
    
+   /*
    @RequestMapping("/register/step1") // http://localhost:8080/mySpringWeb/register/step1
    public String handleStep1() {
       return "register/step1";
    }
+   */
    
    @PostMapping("/register/step2")
    public String handleStep2(@RequestParam(value="agree", defaultValue="false") boolean agree, Model model) {
@@ -90,8 +92,10 @@ public class RegisterController {
       return view;
    }
    
+   /*
    @GetMapping("/main")
-   public String handleMain() {
+   public String main() {
       return "main";
    }
+   */
 }

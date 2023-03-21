@@ -69,6 +69,10 @@ public class Member {
 		
 		this.password = newPassword;
 	}
+	
+	public boolean checkPassword(String password) {
+		return this.password.equals(password);
+	}
 }
 
 

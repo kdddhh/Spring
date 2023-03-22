@@ -12,7 +12,7 @@
    <h1>로그인</h1>
    <hr/>
    
-   <form method = "POST">
+   <form method = "POST" action = "loginProcess">
    <fieldset>
       <label for = "email">이메일</label>
       <input type = "email" name = "email" id = "email" required />

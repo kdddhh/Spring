@@ -30,7 +30,17 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/register/step1").setViewName("register/step1");
 		
 		// http://localhost:8080/mySpringWeb/member/login
-		// registry.addViewController("/member/login").setViewName("member/login");
+		registry.addViewController("/member/login").setViewName("member/login");
+		
+		// http://localhost:8080/mySpringWeb/member/findMember
+		registry.addViewController("/member/findMember").setViewName("member/findMember");
+		
+		// http://localhost:8080/mySpringWeb/member/changePasswd
+		registry.addViewController("/member/changePasswd").setViewName("member/changePasswd");
+		
+		// http://localhost:8080/mySpringWeb/member/allFindMember
+		registry.addViewController("/member/allFindMember").setViewName("member/allFindMember");
+		// 주소를 이용하여 검색을 할 때, 컨트롤러에서 현재 요청에 대한 경로를 찾으면 뷰 컨트롤러 메소드로으로 들어오지 않는다.
 		
 	}
 }

@@ -1,31 +1,35 @@
 package chap11.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import chap11.model.LoginCommand;
-import chap11.model.MemberService;
+import org.springframework.web.bind.annotation.RequestParam;
+import chap11.model.*;
 
 @Controller
 public class MemberController {
-	
+
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("/member/login")
-	public String loginGet() {
-		return "member/login";
-	}
+	@Autowired
+	private ChangePasswordService changePasswordService;
 	
-	@PostMapping("/member/login")
-	public String loginPost(LoginCommand login, HttpSession session) {
+	@PostMapping("/member/loginProcess")
+	public String login(LoginCommand command, HttpSession session) {
 		String view = "";
 		
-		if(memberService.checkLoginAuth(login)) {
-			session.setAttribute("auth", login);
+		if(memberService.checkLoginAuth(command)) {
+			Member member = memberService.findMember(command.getEmail());
+			command.setName(member.getName());
+			command.setPassword("");
+			session.setAttribute("auth", command);
 			view = "redirect:/main";
 		}
 		else {
@@ -36,4 +40,77 @@ public class MemberController {
 		return view;
 	}
 	
+	@PostMapping("/member/findMemberProcess")
+	public String findMember(@RequestParam(value="email") String email, Model model) {
+		Member member = memberService.findMember(email);
+		
+		if(member != null) {
+			model.addAttribute("member", member);
+		}
+		else {
+			model.addAttribute("memberFindMsg", "이메일을 다시 확인해 주세요!");
+		}
+		
+		return "member/findMember";
+	}
+	
+	@PostMapping("/member/changePasswdProcess")
+	public String changePasswd(ChangePasswdCommand command, Model model) {
+		String view = "";
+		
+		try {
+			changePasswordService.changePassword(command);
+			view = "redirect:/member/logout";
+		}
+		catch(Exception e) {
+			model.addAttribute("changePasswdMsg", "올바른 비밀번호를 입력해주세요.");
+			view = "member/changePasswd";
+		}
+		
+		return view;
+	}
+	
+	@GetMapping("/member/logout")
+	public String logout(HttpSession session) {
+		String view = "";
+		
+		if(session.getAttribute("auth") != null) {
+			session.invalidate();
+			view = "redirect:/member/login";
+		}
+		else {
+			view = "redirect:/main";
+		}
+		
+		return view;
+	}
+	
+	@GetMapping("/member/allFindMember")
+	public String allFind(HttpSession session) {
+		String result = "";
+		
+		ArrayList<Member> list = memberService.allfindMember();
+		for(Member find : list) {
+			result += "<tr><td>"+ find.getEmail() + "</td>" +
+					"<td>" + find.getName() + "</td>" + "<td>" + find.getRegisterDateTime().toLocalDate() + "</td>" +"</tr>";
+		}
+		
+		session.setAttribute("table", result);
+		
+		return "member/allFindMember";
+	}
+	
 }
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

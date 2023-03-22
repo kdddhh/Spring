@@ -1,5 +1,8 @@
 package chap11.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class MemberService {
 	
 	private MemberDaoSpring memberDao;
@@ -17,5 +20,15 @@ public class MemberService {
 		}
 		
 		return result;
+	}
+	
+	public Member findMember(String email) {
+		return memberDao.selectByEmail(email);
+	}
+	
+	public ArrayList<Member> allfindMember() {
+		ArrayList<Member> list = (ArrayList<Member>)memberDao.selectAll();
+		
+		return list;
 	}
 }

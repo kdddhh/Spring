@@ -1,7 +1,6 @@
 package chap11.model;
 
 import org.springframework.transaction.annotation.Transactional;
-
 import chap11.exception.*;
 
 public class ChangePasswordService {
@@ -16,17 +15,17 @@ public class ChangePasswordService {
 	}
 	
 	@Transactional
-	public void changePassword(String email, String oldPassword, String newPassword) {
-		Member member = memberDao.selectByEmail(email);
+	public void changePassword(ChangePasswdCommand command) {
+		Member member = memberDao.selectByEmail(command.getEmail());
 		if(member == null) {
 			throw new MemberNotFoundException();
 		}
 		
-		if(oldPassword.equals(newPassword)) {
+		if(command.getPassword().equals(command.getNewPassword())) {
 			throw new WrongIdPasswordException();
 		}
 		
-		member.changePassword(oldPassword, newPassword);
+		member.changePassword(command.getPassword(), command.getNewPassword());
 		memberDao.update(member);
 	}
 }

@@ -86,7 +86,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/member/allFindMember")
-	public String allFind(HttpSession session) {
+	public String allFind(Model model) {
 		String result = "";
 		
 		ArrayList<Member> list = memberService.allfindMember();
@@ -95,7 +95,7 @@ public class MemberController {
 					"<td>" + find.getName() + "</td>" + "<td>" + find.getRegisterDateTime().toLocalDate() + "</td>" +"</tr>";
 		}
 		
-		session.setAttribute("table", result);
+		model.addAttribute("table", result);
 		
 		return "member/allFindMember";
 	}

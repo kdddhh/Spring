@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import chap11.controller.MemberController;
 import chap11.controller.RegisterController;
 import chap11.model.MemberRegisterService;
+import chap11.surbey.SurbeyController;
 
 @Configuration
 public class ControllerConfig {
@@ -25,5 +26,10 @@ public class ControllerConfig {
 	@Bean
 	public MemberController memberController() {
 		return new MemberController();
+	}
+	
+	@Bean
+	public SurbeyController surbeyController() {
+		return new SurbeyController();
 	}
 }
